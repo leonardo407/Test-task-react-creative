@@ -1,0 +1,13 @@
+@import "assets/styles/normalize";
+@import "assets/styles/vars";
+@import "assets/styles/fonts";
+@import "assets/styles/mixins";
+
+body {
+  color: $text-primary;
+  font-size: 13px;
+  line-height: 19px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  font-family: Nunito, serif;
+}
