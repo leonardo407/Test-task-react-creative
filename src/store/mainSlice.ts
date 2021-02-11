@@ -47,6 +47,6 @@ export const getBeer = (
   } catch (e) {
     dispatch(changeIsSendingRequest(false));
     console.log(e);
-    alert("Произошла ошибка");
+    alert("An error has occurred");
   }
 };
