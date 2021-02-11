@@ -28,12 +28,12 @@ export const getBeer = (
   page: number,
   name: string,
   abv: number,
-  isAdvDirectionUp: boolean
+  isAbvDirectionUp: boolean
 ): AppThunk => async (dispatch) => {
   try {
     dispatch(changeIsSendingRequest(true));
 
-    const gtvQuery = isAdvDirectionUp ? `&abv_gt=${abv}` : `&abv_lt=${abv}`;
+    const gtvQuery = isAbvDirectionUp ? `&abv_gt=${abv}` : `&abv_lt=${abv}`;
 
     const response = await axios.get(
       `beers?page=${page}&per_page=20${

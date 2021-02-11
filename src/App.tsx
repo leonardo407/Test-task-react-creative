@@ -23,18 +23,18 @@ const App: FC = () => {
   const [page, setPage] = useState<number>(1);
   const [searchValue, setSearchValue] = useState<string>("");
   const [abv, setAbv] = useState<number>(5);
-  const [isAdvDirectionUp, setIsAdvDirectionUp] = useState<boolean>(true);
+  const [isAbvDirectionUp, setIsAbvDirectionUp] = useState<boolean>(true);
 
   const [query, setQuery] = useQueryParams({
     page: NumberParam,
     search_value: StringParam,
     abv: NumberParam,
-    adv_direction: BooleanParam,
+    abv_direction: BooleanParam,
   });
 
   useEffect(() => {
-    dispatch(getBeer(page, searchValue, abv, isAdvDirectionUp));
-  }, [page, searchValue, abv, isAdvDirectionUp]);
+    dispatch(getBeer(page, searchValue, abv, isAbvDirectionUp));
+  }, [page, searchValue, abv, isAbvDirectionUp]);
 
   useEffect(() => {
     if (query.page) {
@@ -49,8 +49,8 @@ const App: FC = () => {
       setAbv(query.abv);
     }
 
-    if (typeof query.adv_direction === "boolean") {
-      setIsAdvDirectionUp(query.adv_direction);
+    if (typeof query.abv_direction === "boolean") {
+      setIsAbvDirectionUp(query.abv_direction);
     }
   }, []);
 
@@ -59,9 +59,9 @@ const App: FC = () => {
       page: page,
       search_value: searchValue,
       abv: abv,
-      adv_direction: isAdvDirectionUp,
+      abv_direction: isAbvDirectionUp,
     });
-  }, [page, searchValue, abv, isAdvDirectionUp]);
+  }, [page, searchValue, abv, isAbvDirectionUp]);
 
   const nextPage = () => {
     setPage(page + 1);
@@ -79,8 +79,8 @@ const App: FC = () => {
     setAbv(e.target.value as any);
   };
 
-  const advDirectionHandler = () => {
-    setIsAdvDirectionUp(!isAdvDirectionUp);
+  const abvDirectionHandler = () => {
+    setIsAbvDirectionUp(!isAbvDirectionUp);
   };
 
   return (
@@ -100,10 +100,10 @@ const App: FC = () => {
       </div>
       <div className={classes.inputWrapper}>
         <label htmlFor="abv" className={classes.label}>
-          Adv
+          Abv
         </label>
-        <button onClick={advDirectionHandler} className={classes.abvBtn}>
-          {isAdvDirectionUp ? <span>&uarr;</span> : <span>&darr;</span>}
+        <button onClick={abvDirectionHandler} className={classes.abvBtn}>
+          {isAbvDirectionUp ? <span>&uarr;</span> : <span>&darr;</span>}
         </button>
         <input
           className={classes.input}
