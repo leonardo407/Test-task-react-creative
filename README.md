@@ -1,3 +1,11 @@
+[Внешнее API](https://punkapi.com/documentation/v2)
+Используя методы API реализовать каталог пива с фильтрацией по крепости и возможностью поиска по наименованию.
+Реализовать функционал пагинации. С выводом карточек товара по 20шт на страницу.
+При перезагрузке страницы значения фильтра или поиска должны сохраняться.
+Использовать один из фреймворков на выбор: React, Vue, Angular
+Для верстки использовать препроцессор на выбор: SASS, Stylus, LESS
+Для эндпоинтов API использовать переменные окружения
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
