@@ -1,0 +1,23 @@
+@import "src/main";
+
+.item {
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+  border: 1px dashed $primary;
+  border-radius: 10px;
+  box-shadow: 0 0 14px $shadow-color;
+}
+
+.img {
+  max-height: 200px;
+}
+
+.name {
+  margin: 10px 0;
+  font-size: 20px;
+}
+
+.abv {
+  margin: 10px 0;
+}

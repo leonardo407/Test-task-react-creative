@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, useEffect, useState } from "react";
 import classes from "./App.module.scss";
+import { RootState } from "./store";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useQueryParams,
@@ -8,9 +9,12 @@ import {
   BooleanParam,
 } from "use-query-params";
 import { getBeer } from "./store/mainSlice";
-import { RootState } from "./store";
 import { IBeerItem } from "./types";
 import Loader from "./components/loader/Loader";
+import Input from "./components/UI/Input/Input";
+import Pagination from "./components/pagination/Pagination";
+import BeerItem from "./components/beerItem/BeerItem";
+import Button from "./components/UI/Button/Button";
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -86,60 +90,40 @@ const App: FC = () => {
   return (
     <>
       <h2 className={classes.title}>Page {page}</h2>
+
       <div className={classes.inputWrapper}>
-        <label htmlFor="search" className={classes.label}>
-          Search
-        </label>
-        <input
-          className={classes.input}
-          type="text"
-          id="search"
+        <Input
           value={searchValue}
           onChange={searchHandler}
+          id="search"
+          label="Search"
         />
       </div>
+
       <div className={classes.inputWrapper}>
-        <label htmlFor="abv" className={classes.label}>
-          Abv
-        </label>
-        <button onClick={abvDirectionHandler} className={classes.abvBtn}>
-          {isAbvDirectionUp ? <span>&uarr;</span> : <span>&darr;</span>}
-        </button>
-        <input
-          className={classes.input}
-          type="number"
-          id="abv"
+        <Input
           value={abv}
           onChange={abvHandler}
+          id="abv"
+          type="number"
+          label="Abv"
         />
+        <Button onClick={abvDirectionHandler}>
+          {isAbvDirectionUp ? <span>&uarr;</span> : <span>&darr;</span>}
+        </Button>
       </div>
+
       {isSendingRequest ? (
         <Loader />
       ) : (
         <div className={classes.mainWrapper}>
           {beerList.map((item: IBeerItem, index: number) => (
-            <div className={classes.item} key={`beer${index}`}>
-              <img src={item.image_url} alt="" className={classes.img} />
-              <p className={classes.name}>{item.name}</p>
-              <p className={classes.abv}>{item.abv}</p>
-              <p className={classes.description}>{item.description}</p>
-            </div>
+            <BeerItem beerItem={item} key={`beer${index}`} />
           ))}
         </div>
       )}
-      <div className={classes.pagination}>
-        <button
-          disabled={page === 1}
-          onClick={prevPage}
-          className={classes.btn}
-        >
-          &lt;
-        </button>
-        <p className={classes.numberPage}>{page}</p>
-        <button onClick={nextPage} className={classes.btn}>
-          &gt;
-        </button>
-      </div>
+
+      <Pagination page={page} nextPage={nextPage} prevPage={prevPage} />
     </>
   );
 };

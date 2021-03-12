@@ -1,0 +1,14 @@
+@import "src/main";
+
+.btn {
+  padding: 5px 15px;
+  background: $grey-200;
+  border-radius: 5px;
+  color: $primary;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  cursor: initial;
+  color: $grey;
+}
